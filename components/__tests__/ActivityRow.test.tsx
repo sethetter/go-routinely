@@ -2,10 +2,10 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 
-import { weekDaysFromDate } from '../helpers'
-import ActivityRow, { ActivityRowProps } from './ActivityRow'
+import { weekDaysFromDate } from '../../lib/helpers'
+import ActivityRow, { ActivityRowProps } from '../ActivityRow'
 
-import { getFakeData } from '../fake-data'
+import { getFakeData } from '../../lib/fake-data'
 
 const DATA = getFakeData()
 

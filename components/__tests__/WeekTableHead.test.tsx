@@ -2,7 +2,7 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 
-import WeekTableHead from './WeekTableHead'
+import WeekTableHead from '../WeekTableHead'
 
 describe('WeekTableHead', () => {
   it('should match snapshot', () => {

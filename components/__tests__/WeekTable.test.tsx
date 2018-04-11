@@ -2,9 +2,9 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 
-import { getFakeData } from '../fake-data'
+import { getFakeData } from '../../lib/fake-data'
 
-import WeekTable from './WeekTable'
+import WeekTable from '../WeekTable'
 
 const DATA = getFakeData()
 

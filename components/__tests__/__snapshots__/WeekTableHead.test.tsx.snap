@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeekTableHead should match snapshot 1`] = `
+<thead>
+  <tr>
+    <th />
+    <th
+      key="SUN"
+    >
+      SUN
+    </th>
+    <th
+      key="MON"
+    >
+      MON
+    </th>
+    <th
+      key="TUE"
+    >
+      TUE
+    </th>
+    <th
+      key="WED"
+    >
+      WED
+    </th>
+    <th
+      key="THU"
+    >
+      THU
+    </th>
+    <th
+      key="FRI"
+    >
+      FRI
+    </th>
+    <th
+      key="SAT"
+    >
+      SAT
+    </th>
+  </tr>
+</thead>
+`;

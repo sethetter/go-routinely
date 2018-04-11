@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 import * as moment from 'moment'
 import { render } from 'enzyme'
 
@@ -20,15 +19,11 @@ const activityDay = (props: ActivityDayProps) => (
 )
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(
-    activityDay({
-      activityId: 1,
-      day: new Date(),
-      logsForDay: DATA.activityLogs
-    }),
-    div
-  )
+  render(activityDay({
+    activityId: 1,
+    day: new Date(),
+    logsForDay: DATA.activityLogs
+  }))
 })
 
 it('shows a star for each log in logCount', () => {

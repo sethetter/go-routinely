@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeekTable /> should render correctly 1`] = `
+<table
+  className="table table-bordered"
+>
+  <WeekTableHead />
+  <tbody>
+    <ActivityRow
+      activity={
+        Object {
+          "id": 1,
+          "name": "Brush teeth",
+          "value": 1,
+        }
+      }
+      key="1"
+      logsForActivity={
+        Array [
+          Object {
+            "activityId": 1,
+            "id": 1,
+            "name": "Brush teeth",
+            "occurredAt": 2018-04-08T05:00:00.000Z,
+            "value": 1,
+          },
+          Object {
+            "activityId": 1,
+            "id": 2,
+            "name": "Brush teeth",
+            "occurredAt": 2018-04-08T05:00:00.000Z,
+            "value": 1,
+          },
+        ]
+      }
+      weekDays={
+        Array [
+          2018-04-08T05:00:00.000Z,
+          2018-04-09T05:00:00.000Z,
+          2018-04-10T05:00:00.000Z,
+          2018-04-11T05:00:00.000Z,
+          2018-04-12T05:00:00.000Z,
+          2018-04-13T05:00:00.000Z,
+          2018-04-14T05:00:00.000Z,
+        ]
+      }
+    />
+    <ActivityRow
+      activity={
+        Object {
+          "id": 2,
+          "name": "Taekwondo",
+          "value": 2,
+        }
+      }
+      key="2"
+      logsForActivity={
+        Array [
+          Object {
+            "activityId": 2,
+            "id": 3,
+            "name": "Taekwondo",
+            "occurredAt": 2018-04-11T05:00:00.000Z,
+            "value": 2,
+          },
+        ]
+      }
+      weekDays={
+        Array [
+          2018-04-08T05:00:00.000Z,
+          2018-04-09T05:00:00.000Z,
+          2018-04-10T05:00:00.000Z,
+          2018-04-11T05:00:00.000Z,
+          2018-04-12T05:00:00.000Z,
+          2018-04-13T05:00:00.000Z,
+          2018-04-14T05:00:00.000Z,
+        ]
+      }
+    />
+    <ActivityRow
+      activity={
+        Object {
+          "id": 3,
+          "name": "Clean room",
+          "value": 3,
+        }
+      }
+      key="3"
+      logsForActivity={
+        Array [
+          Object {
+            "activityId": 3,
+            "id": 4,
+            "name": "Clean room",
+            "occurredAt": 2018-04-10T05:00:00.000Z,
+            "value": 3,
+          },
+        ]
+      }
+      weekDays={
+        Array [
+          2018-04-08T05:00:00.000Z,
+          2018-04-09T05:00:00.000Z,
+          2018-04-10T05:00:00.000Z,
+          2018-04-11T05:00:00.000Z,
+          2018-04-12T05:00:00.000Z,
+          2018-04-13T05:00:00.000Z,
+          2018-04-14T05:00:00.000Z,
+        ]
+      }
+    />
+  </tbody>
+</table>
+`;
