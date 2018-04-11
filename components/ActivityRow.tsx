@@ -30,7 +30,7 @@ const ActivityRow = ({
   })
 
   return (
-    <tr key={activity.id}>
+    <tr key={activity.id} className="ActivityRow">
       <td>{activity.name}</td>
       {activityDays}
     </tr>

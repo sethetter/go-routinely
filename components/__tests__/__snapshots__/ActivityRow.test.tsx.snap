@@ -2,6 +2,7 @@
 
 exports[`<ActivityRow /> renders successfully 1`] = `
 <tr
+  className="ActivityRow"
   key="1"
 >
   <td>

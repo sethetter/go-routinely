@@ -33,7 +33,7 @@ const WeekTable = ({
   })
 
   return (
-    <table className="table table-bordered">
+    <table className="table table-bordered WeekTable">
       <WeekTableHead />
       <tbody>{activityRows}</tbody>
     </table>

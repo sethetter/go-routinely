@@ -2,7 +2,7 @@
 
 exports[`<WeekTable /> should render correctly 1`] = `
 <table
-  className="table table-bordered"
+  className="table table-bordered WeekTable"
 >
   <WeekTableHead />
   <tbody>

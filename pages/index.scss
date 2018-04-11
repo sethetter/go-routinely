@@ -1,2 +1,9 @@
+$table-cell-padding: 1.25rem !default;
+$font-size-base: 1.5rem;
+
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../node_modules/font-awesome/css/font-awesome.css';
+
+.WeekTable th, .WeekTable td {
+  text-align: center;
+}
