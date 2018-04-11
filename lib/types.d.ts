@@ -28,3 +28,5 @@ declare interface EntityStore<T extends Entity> {
   byId: { [key: number]: T }
   allIds: number[]
 }
+
+declare module 'passport-auth0'
