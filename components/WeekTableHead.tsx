@@ -4,7 +4,7 @@ const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
 const WeekTableHead = () => {
   return (
-    <thead>
+    <thead className="thead-light">
       <tr>
         <th />
         {daysOfWeek.map(d => <th key={d}>{d}</th>)}

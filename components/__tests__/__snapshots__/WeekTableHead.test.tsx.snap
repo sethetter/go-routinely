@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`WeekTableHead should match snapshot 1`] = `
-<thead>
+<thead
+  className="thead-light"
+>
   <tr>
     <th />
     <th

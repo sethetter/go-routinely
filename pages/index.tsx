@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 
 import './index.scss'
 
+import NavBar from '../components/NavBar'
 import WeekTableForWeek from '../components/WeekTableForWeek'
 
 import {
@@ -18,7 +19,14 @@ store.dispatch(loadActivityLogs())
 const App = () => (
   <Provider store={store}>
     <div className="App">
-      <WeekTableForWeek />
+      <NavBar />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <WeekTableForWeek />
+          </div>
+        </div>
+      </div>
     </div>
   </Provider>
 )

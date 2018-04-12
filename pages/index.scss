@@ -1,9 +1,43 @@
-$table-cell-padding: 1.25rem !default;
 $font-size-base: 1.5rem;
+
+$cream: #f2f2e9;
+$green: #92aa71;
+$lightBlue: #a1bfd5;
+$pink: #9a649b;
+$blue: #548cb0;
+$darkBlue: #4B6491;
+
+$primary: $blue;
+$secondary: $pink;
+$success: $green;
+$info: $lightBlue;
+$light: $lightBlue;
+$dark: $darkBlue;
+
+$font-family-base: 'PT Sans Narrow';
+$headings-font-family: 'Anton';
+$headings-color: $darkBlue;
+$body-bg: $cream;
+$body-color: darken($darkBlue, 10%);
+
+$table-bg: lighten($cream, 3%);
+$table-head-bg: $darkBlue;
+$table-head-color: #fff;
+$table-cell-padding: 1.25rem;
+$table-border-color: darken($darkBlue, 5%);
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
 .WeekTable th, .WeekTable td {
   text-align: center;
+}
+
+.WeekTable td:first-child {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.routinely--LogStar {
+  color: darken($yellow, 10%);
 }
