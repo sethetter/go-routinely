@@ -5,7 +5,9 @@ exports[`WeekTableHead should match snapshot 1`] = `
   className="thead-light"
 >
   <tr>
-    <th />
+    <th>
+      Apr 8 - Apr 14
+    </th>
     <th
       key="SUN"
     >

@@ -4,7 +4,9 @@ exports[`<WeekTable /> should render correctly 1`] = `
 <table
   className="table table-bordered WeekTable"
 >
-  <WeekTableHead />
+  <WeekTableHead
+    startOfWeek={2018-04-08T05:00:00.000Z}
+  />
   <tbody>
     <ActivityRow
       activity={

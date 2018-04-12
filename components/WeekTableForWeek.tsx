@@ -11,7 +11,13 @@ function mapStateToProps(state: RootState): WeekTableProps {
   const weekDays = weekDaysFromDate(state.startOfWeek)
   const activities = entityArray(state.activities)
 
-  return { isFetching: false, weekDays, activities, logsForWeek }
+  return {
+    isFetching: false,
+    startOfWeek: state.startOfWeek,
+    weekDays,
+    activities,
+    logsForWeek
+  }
 }
 
 // function mapDispatchToProps(dispatch: Dispatch)

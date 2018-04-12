@@ -16,6 +16,7 @@ describe('<WeekTable />', () => {
         weekDays={DATA.weekDays}
         activities={DATA.activities}
         logsForWeek={DATA.activityLogs}
+        startOfWeek={DATA.weekDays[0]}
       />
     )
 

@@ -8,13 +8,15 @@ export interface WeekTableProps {
   weekDays: Date[]
   activities: Activity[]
   logsForWeek: ActivityLog[]
+  startOfWeek: Date
 }
 
 const WeekTable = ({
   isFetching,
   weekDays,
   activities,
-  logsForWeek
+  logsForWeek,
+  startOfWeek
 }: WeekTableProps) => {
   if (isFetching) {
     return <p>Loading..</p>
@@ -34,7 +36,7 @@ const WeekTable = ({
 
   return (
     <table className="table table-bordered WeekTable">
-      <WeekTableHead />
+      <WeekTableHead startOfWeek={startOfWeek} />
       <tbody>{activityRows}</tbody>
     </table>
   )
