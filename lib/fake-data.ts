@@ -1,22 +1,26 @@
 import * as moment from 'moment'
 
 interface AppData {
+  startOfWeek: Date
   activities: Activity[]
   activityLogs: ActivityLog[]
   weekDays: Date[]
 }
 
+const startOfWeek = new Date('03/25/2018')
+
 const WEEKDAYS = [
-  moment().day('Sunday').startOf('day').toDate(),
-  moment().day('Monday').startOf('day').toDate(),
-  moment().day('Tuesday').startOf('day').toDate(),
-  moment().day('Wednesday').startOf('day').toDate(),
-  moment().day('Thursday').startOf('day').toDate(),
-  moment().day('Friday').startOf('day').toDate(),
-  moment().day('Saturday').startOf('day').toDate(),
+  moment(startOfWeek).day('Sunday').startOf('day').toDate(),
+  moment(startOfWeek).day('Monday').startOf('day').toDate(),
+  moment(startOfWeek).day('Tuesday').startOf('day').toDate(),
+  moment(startOfWeek).day('Wednesday').startOf('day').toDate(),
+  moment(startOfWeek).day('Thursday').startOf('day').toDate(),
+  moment(startOfWeek).day('Friday').startOf('day').toDate(),
+  moment(startOfWeek).day('Saturday').startOf('day').toDate(),
 ]
 
 const DATA: AppData = {
+  startOfWeek,
   activities: [
     { id: 1, name: 'Brush teeth', value: 1 },
     { id: 2, name: 'Taekwondo', value: 2 },

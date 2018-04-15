@@ -27,7 +27,7 @@ it('renders without crashing', () => {
 })
 
 it('shows a star for each log in logCount', () => {
-  const day = moment()
+  const day = moment(DATA.startOfWeek)
     .day('Sunday')
     .startOf('day')
     .toDate()

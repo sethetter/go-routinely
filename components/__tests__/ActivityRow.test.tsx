@@ -15,7 +15,7 @@ const props: ActivityRowProps = {
   logsForActivity: DATA.activityLogs.filter(l => {
     return l.activityId === activity.id
   }),
-  weekDays: weekDaysFromDate(new Date())
+  weekDays: weekDaysFromDate(DATA.startOfWeek)
 }
 
 describe('<ActivityRow />', () => {
