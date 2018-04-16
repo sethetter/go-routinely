@@ -10,10 +10,10 @@ const auth0 = new Auth0Strategy({
   _accessToken: string,
   _refreshToken: string,
   extraParams: any,
-  _profile: any,
+  profile: any,
   done: (err: Error, data: any) => void
 ): void => {
-  done(null, { extraParams })
+  done(null, { profile, extraParams })
 })
 
 passport.use(auth0)

@@ -10,8 +10,12 @@ router.get('/login', passport.authenticate('auth0', {}), (_req, res) => {
 router.get('/callback', passport.authenticate('auth0', {}), (req, res) => {
   if (!req.user) throw new Error('No user!')
 
-  res.cookie('_routinely_session', req.user.extraParams.id_token, {
-    // TODO: confirm options for best security
+  // TODO: confirm options for best security
+  res.cookie('_routinely_token', req.user.extraParams.id_token, {
+    maxAge: req.user.extraParams.expiresIn
+  })
+
+  res.cookie('_routinely_user', req.user.profile.id, {
     maxAge: req.user.extraParams.expiresIn
   })
 
