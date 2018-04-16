@@ -6,17 +6,23 @@ const auth0 = new Auth0Strategy({
   clientID: process.env.AUTH0_CLIENT_ID || '',
   clientSecret: process.env.AUTH0_CLIENT_SECRET || '',
   callbackURL: process.env.AUTH0_CALLBACK_URL
-}, (_accessToken, _refreshToken, _extraParams, profile, done) => {
-  return done(null, profile)
+}, (
+  _accessToken: string,
+  _refreshToken: string,
+  extraParams: any,
+  _profile: any,
+  done: (err: Error, data: any) => void
+): void => {
+  done(null, { extraParams })
 })
 
 passport.use(auth0)
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user);
 })
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser((user, done) => {
   done(null, user);
 })
 

@@ -2,7 +2,8 @@ const path = require('path')
 
 module.exports = {
   transform: {
-    '.(ts|tsx)': '<rootDir>/node_modules/ts-jest/preprocessor.js'
+    '^.+\\.jsx?$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.tsx?$': 'ts-jest'
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: [
@@ -13,13 +14,12 @@ module.exports = {
     'tsx',
     'jsx'
   ],
-  setupFiles: ['<rootDir>/jest.setup.ts'],
+  setupFiles: ['<rootDir>/jest.setup.js'],
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   testEnvironment: 'node',
   globals: {
     'ts-jest': {
-      tsConfigFile: './tsconfig.jest.json',
-      skipBabel: true
+      tsConfigFile: './tsconfig.jest.json'
     }
   }
 }

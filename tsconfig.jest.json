@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
     "rootDir": ".",
     "module": "commonjs",
     "jsx": "react"
