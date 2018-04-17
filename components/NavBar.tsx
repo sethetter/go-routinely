@@ -1,6 +1,26 @@
 import * as React from 'react'
 
-const NavBar = () => {
+export interface NavBarProps {
+  user: UserData
+}
+
+const NavBar = ({ user }: NavBarProps) => {
+  let navRight
+
+  if (user) {
+    navRight = (
+      <li className="nav-item active">
+        <a className="nav-link" href="/auth/logout">Logout</a>
+      </li>
+    )
+  } else {
+    navRight = (
+      <li className="nav-item active">
+        <a className="nav-link" href="/auth/login">Login</a>
+      </li>
+    )
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
       <a className="navbar-brand" href="#">Routinely</a>
@@ -9,11 +29,7 @@ const NavBar = () => {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-          </li>
-        </ul>
+        <ul className="navbar-nav ml-auto">{navRight}</ul>
       </div>
     </nav>
   )

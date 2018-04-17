@@ -24,6 +24,12 @@ export const initialState: RootState = {
 function rootReducer (state: RootState = initialState, action: RoutinelyAction) {
   switch (action.type) {
 
+    case Actions.ReceiveUser:
+      return Object.assign({}, {
+        ...state,
+        user: action.user
+      })
+
     case Actions.RequestActivities:
       return Object.assign({}, {
         ...state,

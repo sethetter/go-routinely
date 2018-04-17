@@ -12,10 +12,16 @@ declare interface ActivityLog {
   occurredAt: Date
 }
 
+declare interface UserData {
+  id: string
+  token: string
+}
+
 declare interface RootState {
   isFetching: boolean
   activities: EntityStore<Activity>
   logs: EntityStore<ActivityLog>
+  user?: UserData
   startOfWeek: Date
   lastUpdated: Date
 }
@@ -30,3 +36,4 @@ declare interface EntityStore<T extends Entity> {
 }
 
 declare module 'passport-auth0'
+declare module 'universal-cookie'

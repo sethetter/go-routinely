@@ -1,6 +1,7 @@
 import * as moment from 'moment'
 
 interface AppData {
+  user: UserData
   startOfWeek: Date
   activities: Activity[]
   activityLogs: ActivityLog[]
@@ -21,6 +22,10 @@ const WEEKDAYS = [
 
 const DATA: AppData = {
   startOfWeek,
+  user: {
+    id: 'oauth|1234',
+    token: 'asd98fajsd9fp8jq3p948fjqp3984jfqp934jf'
+  },
   activities: [
     { id: 1, name: 'Brush teeth', value: 1 },
     { id: 2, name: 'Taekwondo', value: 2 },

@@ -5,16 +5,23 @@ import { Dispatch } from 'react-redux'
 import * as api from './fake-api'
 
 export type RoutinelyAction
-  = RequestActivitiesAction
+  = ReceiveUserAction
+  | RequestActivitiesAction
   | ReceiveActivitiesAction
   | RequestActivityLogsAction
   | ReceiveActivityLogsAction
 
 export const enum Actions {
-  RequestActivities = 'Routinely/REQUEST_ACTIVITIES',
+  ReceiveUser = 'Routinely/ReceiveUser',
+  RequestActivities = 'Routinely/RequestActivities',
   ReceiveActivities = 'Routinely/ReceiveActivities',
   RequestActivityLogs = 'Routinely/RequestActivityLogs',
   ReceiveActivityLogs = 'Routinely/ReceiveActivityLogs'
+}
+
+export interface ReceiveUserAction extends Action {
+  type: Actions.ReceiveUser
+  user: UserData
 }
 
 export interface RequestActivityLogsAction extends Action {
@@ -38,6 +45,11 @@ export interface ReceiveActivitiesAction extends Action {
 /**
  * Action Creators
  */
+export const receiveUser = (user: UserData): ReceiveUserAction => ({
+  type: Actions.ReceiveUser,
+  user
+})
+
 export const requestActivities = (): RequestActivitiesAction => ({
   type: Actions.RequestActivities
 })
