@@ -35,5 +35,4 @@ declare interface EntityStore<T extends Entity> {
   allIds: number[]
 }
 
-declare module 'passport-auth0'
 declare module 'universal-cookie'

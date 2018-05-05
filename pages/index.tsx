@@ -20,7 +20,7 @@ const cookies = new Cookies()
 const userToken = cookies.get('_routinely_token')
 const userID = cookies.get('_routinely_user')
 
-if (!userToken || !userID) {
+if (userToken && userID) {
   store.dispatch(receiveUser({
     id: userID,
     token: userToken
@@ -30,19 +30,21 @@ if (!userToken || !userID) {
   store.dispatch(loadActivityLogs())
 }
 
-const App = () => (
-  <Provider store={store}>
-    <div className="App">
-      <NavBarForUser />
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <WeekTableForWeek />
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <NavBarForUser />
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <WeekTableForWeek />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </Provider>
-)
+    </Provider>
+  )
+}
 
 export default App

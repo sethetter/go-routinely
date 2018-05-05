@@ -5,21 +5,17 @@ export interface NavBarProps {
 }
 
 const NavBar = ({ user }: NavBarProps) => {
-  let navRight
-
-  if (user) {
-    navRight = (
-      <li className="nav-item active">
-        <a className="nav-link" href="/auth/logout">Logout</a>
-      </li>
-    )
-  } else {
-    navRight = (
-      <li className="nav-item active">
-        <a className="nav-link" href="/auth/login">Login</a>
-      </li>
-    )
-  }
+  const navRight = user
+    ? (
+        <li className="nav-item">
+          <a className="nav-link" href="/auth/logout">Logout</a>
+        </li>
+      )
+    : (
+        <li className="nav-item">
+          <a className="nav-link" href="/auth/login">Login</a>
+        </li>
+      )
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-5">

@@ -1,25 +1,38 @@
 import * as express from 'express'
-import * as passport from 'passport'
 
 const router = express.Router()
 
-router.get('/login', passport.authenticate('auth0', {}), (_req, res) => {
+router.get('/login', (req, res) => {
+  // TODO: this
   res.redirect('/')
 })
 
-router.get('/callback', passport.authenticate('auth0', {}), (req, res) => {
-  if (!req.user) throw new Error('No user!')
+router.get('/logout', (req, res) => {
+  req.logout()
 
-  // TODO: confirm options for best security
-  res.cookie('_routinely_token', req.user.extraParams.id_token, {
-    maxAge: req.user.extraParams.expiresIn
-  })
-
-  res.cookie('_routinely_user', req.user.profile.id, {
-    maxAge: req.user.extraParams.expiresIn
-  })
+  res.clearCookie('_routinely_token', { path: '' })
+  res.clearCookie('_routinely_user', { path: '' })
 
   res.redirect('/')
 })
+
+// router.get('/callback', passport.authenticate('auth0', {
+//   failureRedirect: '/login'
+// }), (req, res) => {
+//   if (!req.user) throw new Error('No user!')
+
+//   // TODO: confirm options for best security
+//   res.cookie('_routinely_token', req.user.extraParams.id_token, {
+//     path: '',
+//     maxAge: req.user.extraParams.expires_in
+//   })
+
+//   res.cookie('_routinely_user', req.user.profile.id, {
+//     path: '',
+//     maxAge: req.user.extraParams.expires_in
+//   })
+
+//   res.redirect('/')
+// })
 
 export default router
