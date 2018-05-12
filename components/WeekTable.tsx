@@ -1,27 +1,22 @@
 import * as React from 'react'
 
+import {
+  weekDaysFromDate
+} from '../lib/helpers'
+
 import ActivityRow from './ActivityRow'
 import WeekTableHead from './WeekTableHead'
 
-export interface WeekTableProps {
-  isFetching: boolean
-  weekDays: Date[]
+interface WeekTableProps { 
+  startOfWeek: Date
   activities: Activity[]
   logsForWeek: ActivityLog[]
-  startOfWeek: Date
 }
 
-const WeekTable = ({
-  isFetching,
-  weekDays,
-  activities,
-  logsForWeek,
-  startOfWeek
-}: WeekTableProps) => {
-  if (isFetching) {
-    return <p>Loading..</p>
-  }
-
+const WeekTable = (props: WeekTableProps) => {
+  const { startOfWeek, activities, logsForWeek } = props
+  const weekDays = weekDaysFromDate(startOfWeek)
+  
   const activityRows = activities.map(a => {
     const logsForActivity = logsForWeek.filter(l => l.activityId === a.id)
     return (

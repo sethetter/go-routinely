@@ -1,8 +1,7 @@
 import * as moment from 'moment'
-import { reduce } from 'lodash'
 
-export function entityArray<T extends Entity> (entity: EntityStore<T>): T[] {
-  return entity.allIds.map(id => entity.byId[id])
+export function startOfWeekFromDate (date: Date): Date {
+  return moment(date).day('Sunday').startOf('day').toDate()
 }
 
 export function weekDaysFromDate (date: Date): Date[] {
@@ -15,11 +14,4 @@ export function weekDaysFromDate (date: Date): Date[] {
   }
 
   return weekDays
-}
-
-export function toEntityStore<T extends Entity> (items: T[]): EntityStore<T> {
-  return {
-    byId: reduce(items, (o, i) => Object.assign(o, { [i.id]: i }), {}),
-    allIds: items.map(i => i.id)
-  }
 }

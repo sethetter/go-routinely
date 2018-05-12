@@ -12,9 +12,9 @@ import * as session from 'express-session'
 import * as mongoose from 'mongoose'
 import * as createMongoStore from 'connect-mongo'
 import * as passport from 'passport'
-import { ensureLoggedIn } from 'connect-ensure-login'
 
 import authRoutes from './routes/auth'
+import apiRoutes from './routes/api'
 
 const MongoStore = createMongoStore(session)
 
@@ -31,30 +31,32 @@ export default (nextHandler: NextHandler): express.Application => {
   app.use(cookieParser(process.env.SESSION_SECRET || 'shwat'))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
-  app.use(session({
+
+  const sessionConfig: session.SessionOptions = {
     secret: process.env.SESSION_SECRET || 'shwat',
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection
-    }),
     cookie: {
       path: '/',
       secure: process.env.NODE_ENV === 'production'
     },
     resave: false,
     saveUninitialized: false
-  }))
+  }
 
+  if (process.env.NODE_ENV !== 'testing') {
+    sessionConfig.store = new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  }
+
+  app.use(session(sessionConfig))
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // TODO: Is this necessary with asyncHandler? Is it a TS issue?
   const asyncRouter = require('express-promise-router')()
   app.use(asyncRouter)
 
   app.use('/auth', authRoutes)
-  app.get('/api/stuff', ensureLoggedIn('/auth/login'), (req, res) => {
-    return res.json(req.user)
-  })
+  app.use('/api', apiRoutes)
 
   const errorHandler: express.ErrorRequestHandler =
     (err, _req, res, next) => {

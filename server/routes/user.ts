@@ -4,7 +4,8 @@ import * as asyncHandler from 'express-async-handler'
 
 const router = express.Router()
 
-router.post('/', asyncHandler(async (req, res) => {
+// Info about currently logged in user
+router.get('/me', asyncHandler(async (req, res) => {
   const { email } = req.body
   const id = await User.create({ email })
 

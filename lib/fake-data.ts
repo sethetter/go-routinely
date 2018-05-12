@@ -8,7 +8,7 @@ interface AppData {
   weekDays: Date[]
 }
 
-const startOfWeek = new Date('03/25/2018')
+const startOfWeek = new Date()
 
 const WEEKDAYS = [
   moment(startOfWeek).day('Sunday').startOf('day').toDate(),
@@ -22,10 +22,7 @@ const WEEKDAYS = [
 
 const DATA: AppData = {
   startOfWeek,
-  user: {
-    id: 'oauth|1234',
-    token: 'asd98fajsd9fp8jq3p948fjqp3984jfqp934jf'
-  },
+  user: { id: 'aosidfjoasidfj' },
   activities: [
     { id: 1, name: 'Brush teeth', value: 1 },
     { id: 2, name: 'Taekwondo', value: 2 },

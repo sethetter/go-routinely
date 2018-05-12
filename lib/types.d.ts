@@ -14,25 +14,6 @@ declare interface ActivityLog {
 
 declare interface UserData {
   id: string
-  token: string
 }
 
-declare interface RootState {
-  isFetching: boolean
-  activities: EntityStore<Activity>
-  logs: EntityStore<ActivityLog>
-  user?: UserData
-  startOfWeek: Date
-  lastUpdated: Date
-}
-
-interface Entity {
-  id: number
-}
-
-declare interface EntityStore<T extends Entity> {
-  byId: { [key: number]: T }
-  allIds: number[]
-}
-
-declare module 'universal-cookie'
+declare module 'passport-auth0'

@@ -1,50 +1,83 @@
 import * as React from 'react'
-import { Provider } from 'react-redux'
-import Cookies from 'universal-cookie'
+import * as moment from 'moment'
+
+import * as api from '../lib/api'
+
+import NavBar from '../components/NavBar'
+import WeekTable from '../components/WeekTable'
 
 import './index.scss'
 
-import NavBarForUser from '../components/NavBarForUser'
-import WeekTableForWeek from '../components/WeekTableForWeek'
-
-import {
-  receiveUser,
-  loadActivities,
-  loadActivityLogs
-} from '../lib/actions'
-
-import store from '../lib/store'
-
-const cookies = new Cookies()
-
-const userToken = cookies.get('_routinely_token')
-const userID = cookies.get('_routinely_user')
-
-if (userToken && userID) {
-  store.dispatch(receiveUser({
-    id: userID,
-    token: userToken
-  }))
-
-  store.dispatch(loadActivities())
-  store.dispatch(loadActivityLogs())
+interface AppState { 
+  isLoading: boolean
+  user?: UserData
+  startOfWeek: Date
+  activities: Activity[]
+  logsForWeek: ActivityLog[]
 }
 
-const App = () => {
-  return (
-    <Provider store={store}>
+class App extends React.Component<Partial<AppState>, AppState> {
+
+  static async getInitialProps ({ req }: { req: any }) {
+    const startOfWeek = moment().startOf('week').toDate()
+
+    let user
+    let activities
+    let logsForWeek
+
+    const isServer = !!req
+
+    if (isServer) {
+      user = req.user
+      activities = await api.getActivities()
+      logsForWeek = await api.getLogsForWeek(startOfWeek)
+    } else {
+      user = await api.getUserData()
+      activities = await api.getActivities()
+      logsForWeek = await api.getLogsForWeek(startOfWeek)
+    }
+
+    return { user, startOfWeek, activities, logsForWeek }
+  }
+
+  componentWillMount () {
+    try {
+      this.setState({
+        isLoading: false,
+        user: this.props.user,
+        activities: this.props.activities,
+        logsForWeek: this.props.logsForWeek
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  render () {
+    return (
       <div className="App">
-        <NavBarForUser />
+        <NavBar user={this.state.user} />
+
         <div className="container">
           <div className="row">
             <div className="col">
-              <WeekTableForWeek />
+              {
+                this.state.user ? (
+                  <WeekTable
+                    startOfWeek={this.state.startOfWeek}
+                    activities={this.state.activities}
+                    logsForWeek={this.state.logsForWeek}
+                  />
+                ) : (
+                  <h3 className="text-center" >Welcome! Please log in to get started.</h3>
+                )
+              }
             </div>
           </div>
         </div>
       </div>
-    </Provider>
-  )
+    )
+  }
 }
 
 export default App
