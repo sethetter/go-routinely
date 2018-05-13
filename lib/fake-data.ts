@@ -8,7 +8,7 @@ interface AppData {
   weekDays: Date[]
 }
 
-const startOfWeek = new Date()
+const startOfWeek = new Date('03/25/2018')
 
 const WEEKDAYS = [
   moment(startOfWeek).day('Sunday').startOf('day').toDate(),

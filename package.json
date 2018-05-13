@@ -5,7 +5,7 @@
     "dev": "nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "NODE_ENV=production node production-server/index.js",
-    "test": "NODE_ENV=testing jest --silent --watch"
+    "test": "NODE_ENV=testing jest --watch"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
@@ -44,6 +44,7 @@
     "@types/isomorphic-fetch": "^0.0.34",
     "@types/jest": "^22.2.2",
     "@types/lodash": "^4.14.106",
+    "@types/mongodb": "^3.0.18",
     "@types/mongoose": "^5.0.13",
     "@types/next": "^2.4.7",
     "@types/node": "^10.0.6",

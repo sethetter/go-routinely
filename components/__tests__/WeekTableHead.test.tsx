@@ -5,7 +5,7 @@ import { shallowToJson } from 'enzyme-to-json'
 
 import WeekTableHead from '../WeekTableHead'
 
-const startOfWeek = moment().startOf('week').toDate()
+const startOfWeek = moment(new Date('03/25/2018')).startOf('week').toDate()
 
 describe('WeekTableHead', () => {
   it('should match snapshot', () => {

@@ -32,8 +32,8 @@ jest.mock('passport-auth0')
 const nextHandler = jest.fn<NextHandler>()
 const app = server(nextHandler)
 
-describe('/api/user/me', () => {
-  it('responds with 403 if not logged in', async (done) => {
+describe('GET /api/user/me', () => {
+  it('responds with 401 if not logged in', async (done) => {
     const resp = await request(app).get('/api/user/me')
     expect(resp.status).toBe(401)
     return done()
@@ -46,3 +46,28 @@ describe('/api/user/me', () => {
     return done()
   })
 })
+
+// describe('GET /api/activities', () => {
+//   it('returns a 401 if not logged in', async (done) => {
+//     const resp = await request(app).get('/api/activities')
+//     expect(resp.status).toBe(401)
+//     return done()
+//   })
+//   it('returns a list of activities for the logged in user', async (done) => {
+//     // TODO: seed some activities
+//     // const resp = await request(authenticated(app)).get('/api/activities')
+//     return done()
+//   })
+// })
+
+// describe('POST /api/activities', () => {
+//   it('returns a 401 if not logged in', async (done) => {
+//     const activity = { name: 'Test', value: 3 }
+//     const resp = await request(app).post('/api/activities').send(activity)
+//     expect(resp.status).toBe(401)
+//     return done()
+//   })
+//   it('creates an activity belonging to the logged in user', () => {})
+//   it('returns a 400 if name is missing', () => {})
+//   it('defaults the value to 1', () => {})
+// })

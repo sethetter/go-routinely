@@ -6,7 +6,7 @@ exports[`WeekTableHead should match snapshot 1`] = `
 >
   <tr>
     <th>
-      4/15 - 4/21
+      3/25 - 3/31
     </th>
     <th
       key="SUN"

@@ -61,7 +61,10 @@ export default (nextHandler: NextHandler): express.Application => {
   const errorHandler: express.ErrorRequestHandler =
     (err, _req, res, next) => {
       if (!err) return next()
-      console.error(err)
+
+      if (process.env.NODE_ENV !== 'testing') {
+        console.error(err)
+      }
 
       const status = err.status || 500
       return res.status(status).json(
