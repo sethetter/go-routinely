@@ -50,5 +50,6 @@ describe('ActivityLog', () => {
 
     expect(log.name).toBe(activityParams.name)
     expect(log.value).toBe(activityParams.value)
+    expect(log._id).toBeTruthy()
   })
 })

@@ -1,6 +1,7 @@
 import * as express from 'express'
 import * as passport from 'passport'
 import * as Auth0Strategy from 'passport-auth0'
+import * as httpErrors from 'http-errors'
 
 const router = express.Router()
 
@@ -38,3 +39,10 @@ router.get('/callback', passport.authenticate('auth0', {
 })
 
 export default router
+
+export const requireUser: express.Handler = (req, _res, next) => {
+  if (!req.user) {
+    throw new httpErrors.Unauthorized()
+  }
+  return next()
+}

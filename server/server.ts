@@ -13,7 +13,7 @@ import * as mongoose from 'mongoose'
 import * as createMongoStore from 'connect-mongo'
 import * as passport from 'passport'
 
-import authRoutes from './routes/auth'
+import authRoutes, { requireUser } from './routes/auth'
 import apiRoutes from './routes/api'
 
 const MongoStore = createMongoStore(session)
@@ -56,7 +56,7 @@ export default (nextHandler: NextHandler): express.Application => {
   app.use(asyncRouter)
 
   app.use('/auth', authRoutes)
-  app.use('/api', apiRoutes)
+  app.use('/api', requireUser, apiRoutes)
 
   const errorHandler: express.ErrorRequestHandler =
     (err, _req, res, next) => {

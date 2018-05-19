@@ -1,6 +1,6 @@
 import { Document, Schema, model } from 'mongoose'
 
-interface activity extends Document {
+export interface IActivity extends Document {
   userId: string
   name: string
   value: number
@@ -21,6 +21,6 @@ const schema = new Schema({
   }
 })
 
-const Activity = model<activity>('Activity', schema)
+const Activity = model<IActivity>('Activity', schema)
 
 export default Activity

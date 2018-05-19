@@ -1,9 +1,8 @@
 import { Document, Schema, model } from 'mongoose'
-import { ObjectId } from 'mongodb'
 
 import Activity from './Activity'
 
-interface activityLog extends Document {
+export interface IActivityLog extends Document {
   userId: string
   name: string
   value: number
@@ -33,9 +32,8 @@ const schema = new Schema({
   }
 })
 
-schema.post('save', async function () {
+schema.pre<Document & IActivityLog>('validate', async function () {
   if (this.activityId) {
-    console.log(this.activityId)
     const activity = await Activity.findOne({
       _id: this.activityId,
       userId: this.userId
@@ -48,6 +46,6 @@ schema.post('save', async function () {
   }
 })
 
-const ActivityLog = model<activityLog>('ActivityLog', schema)
+const ActivityLog = model<IActivityLog>('ActivityLog', schema)
 
 export default ActivityLog
