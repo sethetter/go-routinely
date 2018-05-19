@@ -119,9 +119,9 @@ describe('POST /api/activities', () => {
   })
 })
 
-describe('GET /api/activity-logs', () => {
+describe('GET /api/logs', () => {
   it('returns a 401 if not logged in', async (done) => {
-    const resp = await request(app).get('/api/activity-logs')
+    const resp = await request(app).get('/api/logs')
     expect(resp.status).toBe(401)
     return done()
   })
@@ -130,7 +130,7 @@ describe('GET /api/activity-logs', () => {
     await seedActivityLogsForUser(USER_ID)
     await seedActivityLogsForUser('anotheruser')
 
-    const resp = await request(authenticated(app)).get('/api/activity-logs')
+    const resp = await request(authenticated(app)).get('/api/logs')
     expect(resp.body).toHaveLength(3)
 
     return done()
@@ -143,7 +143,7 @@ describe('GET /api/activity-logs', () => {
     await seedActivityLogsForUser(USER_ID, { completedAt: date.add(1, 'week').toDate() })
 
     const resp = await request(authenticated(app))
-      .get(`/api/activity-logs?week=${date.toISOString()}`)
+      .get(`/api/logs?week=${date.toISOString()}`)
 
     expect(resp.body).toHaveLength(3)
 
@@ -151,20 +151,20 @@ describe('GET /api/activity-logs', () => {
   })
 })
 
-describe('POST /api/activity-logs', () => {
+describe('POST /api/logs', () => {
   const logParams: Partial<IActivityLog> = {
     name: 'Test Log',
     value: 2
   }
 
   it('returns a 401 if not logged in', async (done) => {
-    const resp = await request(app).post('/api/activity-logs').send(logParams)
+    const resp = await request(app).post('/api/logs').send(logParams)
     expect(resp.status).toBe(401)
     return done()
   })
 
   it('creates given log for logged in user, returns it', async (done) => {
-    const resp = await request(authenticated(app)).post('/api/activity-logs').send(logParams)
+    const resp = await request(authenticated(app)).post('/api/logs').send(logParams)
 
     expect(resp.body.userId).toBe(USER_ID)
     expect(resp.body.name).toBe(logParams.name)
@@ -183,7 +183,7 @@ describe('POST /api/activity-logs', () => {
 
     activity = await activity.save()
 
-    const resp = await request(authenticated(app)).post('/api/activity-logs').send({
+    const resp = await request(authenticated(app)).post('/api/logs').send({
       activityId: activity._id
     })
 

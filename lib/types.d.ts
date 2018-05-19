@@ -1,11 +1,11 @@
 declare interface Activity {
-  id: number
+  _id: string
   name: string
   value: number
 }
 
 declare interface ActivityLog {
-  id: number
+  _id: string
   name: string
   value: number
   activityId: number

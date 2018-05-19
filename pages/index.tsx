@@ -18,29 +18,34 @@ interface AppState {
 
 class App extends React.Component<Partial<AppState>, AppState> {
 
+  constructor (args: any) {
+    super(args)
+
+    this.state = {
+      isLoading: true,
+      startOfWeek: this.props.startOfWeek,
+      activities: this.props.activities,
+      logsForWeek: this.props.logsForWeek,
+    }
+
+    this.createActivity = this.createActivity.bind(this)
+  }
+
   static async getInitialProps ({ req }: { req: any }) {
+    const isServer = !!req
+    const headers: any | undefined = isServer ? req.headers : {}
+
     const startOfWeek = moment().startOf('week').toDate()
 
-    let user
-    let activities
-    let logsForWeek
-
-    const isServer = !!req
-
-    if (isServer) {
-      user = req.user
-      activities = await api.getActivities()
-      logsForWeek = await api.getLogsForWeek(startOfWeek)
-    } else {
-      user = await api.getUserData()
-      activities = await api.getActivities()
-      logsForWeek = await api.getLogsForWeek(startOfWeek)
-    }
+    const user = isServer ? req.user : await api.getUserData(isServer, headers)
+    const activities = user ? await api.getActivities(isServer, headers) : []
+    const logsForWeek = user ? await api.getLogsForWeek(startOfWeek, isServer, headers) : []
 
     return { user, startOfWeek, activities, logsForWeek }
   }
 
   componentWillMount () {
+    console.log(this.props)
     try {
       this.setState({
         isLoading: false,
@@ -63,11 +68,13 @@ class App extends React.Component<Partial<AppState>, AppState> {
             <div className="col">
               {
                 this.state.user ? (
-                  <WeekTable
-                    startOfWeek={this.state.startOfWeek}
-                    activities={this.state.activities}
-                    logsForWeek={this.state.logsForWeek}
-                  />
+                  <div>
+                    <WeekTable
+                      startOfWeek={this.state.startOfWeek}
+                      activities={this.state.activities}
+                      logsForWeek={this.state.logsForWeek}
+                    />
+                  </div>
                 ) : (
                   <h3 className="text-center" >Welcome! Please log in to get started.</h3>
                 )

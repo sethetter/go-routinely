@@ -42,7 +42,7 @@ router.post('/activities', async (req, res) => {
 /**
  * Activity Routes
  */
-router.get('/activity-logs', async (req, res) => {
+router.get('/logs', async (req, res) => {
   const query: any = { userId: req.user.id }
 
   if (req.query.week) {
@@ -58,7 +58,7 @@ router.get('/activity-logs', async (req, res) => {
   res.json(logs)
 })
 
-router.post('/activity-logs', async (req, res) => {
+router.post('/logs', async (req, res) => {
   const { name, value, activityId } = req.body
   const userId = req.user.id
 
