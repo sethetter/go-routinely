@@ -7,12 +7,14 @@ export interface ActivityRowProps {
   activity: Activity
   weekDays: Date[]
   logsForActivity: ActivityLog[]
+  createLog: (params: Partial<ActivityLog>) => void
 }
 
 const ActivityRow = ({
   activity,
   weekDays,
-  logsForActivity
+  logsForActivity,
+  createLog,
 }: ActivityRowProps) => {
   const activityDays = weekDays.map(d => {
     const logsForDay = logsForActivity.filter(l =>
@@ -29,9 +31,13 @@ const ActivityRow = ({
     )
   })
 
+  const createLogForNow = () => {
+    createLog({ activityId: activity._id })
+  }
+
   return (
     <tr key={activity._id} className="ActivityRow">
-      <td>{activity.name}</td>
+      <td onClick={createLogForNow} className="activity-name">{activity.name}</td>
       {activityDays}
     </tr>
   )

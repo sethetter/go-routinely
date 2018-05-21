@@ -48,3 +48,14 @@ export async function createActivity (
     method: 'POST',
   })).then(r => r.json())
 }
+
+export async function createLog (
+  params: Partial<ActivityLog>,
+  isServer: boolean = false,
+): Promise<ActivityLog> {
+  const uri = new URI(apiUrl(isServer, '/api/logs'))
+  return fetch(uri.valueOf(), Object.assign({}, defaultFetchOpts, {
+    body: JSON.stringify(params),
+    method: 'POST',
+  })).then(r => r.json())
+}

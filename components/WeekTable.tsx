@@ -11,10 +11,11 @@ interface WeekTableProps {
   startOfWeek: Date
   activities: Activity[]
   logsForWeek: ActivityLog[]
+  createLog: (params: Partial<ActivityLog>) => void
 }
 
 const WeekTable = (props: WeekTableProps) => {
-  const { startOfWeek, activities, logsForWeek } = props
+  const { startOfWeek, activities, logsForWeek, createLog } = props
   const weekDays = weekDaysFromDate(startOfWeek)
   
   const activityRows = activities.map(a => {
@@ -25,6 +26,7 @@ const WeekTable = (props: WeekTableProps) => {
         activity={a}
         weekDays={weekDays}
         logsForActivity={logsForActivity}
+        createLog={createLog}
       />
     )
   })

@@ -5,25 +5,28 @@ exports[`<ActivityRow /> renders successfully 1`] = `
   className="ActivityRow"
   key="1"
 >
-  <td>
+  <td
+    className="activity-name"
+    onClick={[Function]}
+  >
     Brush teeth
   </td>
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-25T05:00:00.000Z}
     key="1521954000000"
     logsForDay={
       Array [
         Object {
-          "activityId": 1,
-          "id": 1,
+          "_id": "1",
+          "activityId": "1",
           "name": "Brush teeth",
           "occurredAt": 2018-03-25T05:00:00.000Z,
           "value": 1,
         },
         Object {
-          "activityId": 1,
-          "id": 2,
+          "_id": "2",
+          "activityId": "1",
           "name": "Brush teeth",
           "occurredAt": 2018-03-25T05:00:00.000Z,
           "value": 1,
@@ -32,37 +35,37 @@ exports[`<ActivityRow /> renders successfully 1`] = `
     }
   />
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-26T05:00:00.000Z}
     key="1522040400000"
     logsForDay={Array []}
   />
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-27T05:00:00.000Z}
     key="1522126800000"
     logsForDay={Array []}
   />
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-28T05:00:00.000Z}
     key="1522213200000"
     logsForDay={Array []}
   />
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-29T05:00:00.000Z}
     key="1522299600000"
     logsForDay={Array []}
   />
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-30T05:00:00.000Z}
     key="1522386000000"
     logsForDay={Array []}
   />
   <ActivityDay
-    activityId={1}
+    activityId="1"
     day={2018-03-31T05:00:00.000Z}
     key="1522472400000"
     logsForDay={Array []}

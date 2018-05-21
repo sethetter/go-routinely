@@ -13,9 +13,10 @@ const activity = DATA.activities[0]
 const props: ActivityRowProps = {
   activity,
   logsForActivity: DATA.activityLogs.filter(l => {
-    return l.activityId === activity.id
+    return l.activityId === activity._id
   }),
-  weekDays: weekDaysFromDate(DATA.startOfWeek)
+  weekDays: weekDaysFromDate(DATA.startOfWeek),
+  createLog: jest.fn()
 }
 
 describe('<ActivityRow />', () => {
@@ -23,5 +24,15 @@ describe('<ActivityRow />', () => {
     const component = shallow(<ActivityRow {...props} />)
 
     expect(shallowToJson(component)).toMatchSnapshot()
+  })
+
+  it('calls the createLog function when activity name clicked', () => {
+    const createLog = jest.fn()
+    const component = shallow(<ActivityRow {...props} createLog={createLog} />)
+
+    component.find('td.activity-name').simulate('click')
+
+    const expectedParams = { activityId: activity._id }
+    expect(createLog).toHaveBeenCalledWith(expectedParams)
   })
 })

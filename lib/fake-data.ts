@@ -24,15 +24,15 @@ const DATA: AppData = {
   startOfWeek,
   user: { id: 'aosidfjoasidfj' },
   activities: [
-    { id: 1, name: 'Brush teeth', value: 1 },
-    { id: 2, name: 'Taekwondo', value: 2 },
-    { id: 3, name: 'Clean room', value: 3 },
+    { _id: '1', name: 'Brush teeth', value: 1 },
+    { _id: '2', name: 'Taekwondo', value: 2 },
+    { _id: '3', name: 'Clean room', value: 3 },
   ],
   activityLogs: [
-    { id: 1, name: 'Brush teeth', value: 1, activityId: 1, occurredAt: WEEKDAYS[0] },
-    { id: 2, name: 'Brush teeth', value: 1, activityId: 1, occurredAt: WEEKDAYS[0] },
-    { id: 3, name: 'Taekwondo', value: 2, activityId: 2, occurredAt: WEEKDAYS[3] },
-    { id: 4, name: 'Clean room', value: 3, activityId: 3, occurredAt: WEEKDAYS[2] },
+    { _id: '1', name: 'Brush teeth', value: 1, activityId: '1', occurredAt: WEEKDAYS[0] },
+    { _id: '2', name: 'Brush teeth', value: 1, activityId: '1', occurredAt: WEEKDAYS[0] },
+    { _id: '3', name: 'Taekwondo', value: 2, activityId: '2', occurredAt: WEEKDAYS[3] },
+    { _id: '4', name: 'Clean room', value: 3, activityId: '3', occurredAt: WEEKDAYS[2] },
   ],
   weekDays: WEEKDAYS
 }

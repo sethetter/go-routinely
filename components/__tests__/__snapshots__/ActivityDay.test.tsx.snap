@@ -15,78 +15,7 @@ initialize {
                 "attribs": Object {
                   "class": "routinely--ActivityDayCol-0",
                 },
-                "children": Array [
-                  Object {
-                    "attribs": Object {
-                      "class": "routinely--LogStar fa fa-star",
-                    },
-                    "children": Array [],
-                    "name": "i",
-                    "namespace": "http://www.w3.org/1999/xhtml",
-                    "next": Object {
-                      "attribs": Object {
-                        "class": "routinely--LogStar fa fa-star",
-                      },
-                      "children": Array [],
-                      "name": "i",
-                      "namespace": "http://www.w3.org/1999/xhtml",
-                      "next": null,
-                      "parent": [Circular],
-                      "prev": [Circular],
-                      "type": "tag",
-                      "x-attribsNamespace": Object {
-                        "class": undefined,
-                      },
-                      "x-attribsPrefix": Object {
-                        "class": undefined,
-                      },
-                    },
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "tag",
-                    "x-attribsNamespace": Object {
-                      "class": undefined,
-                    },
-                    "x-attribsPrefix": Object {
-                      "class": undefined,
-                    },
-                  },
-                  Object {
-                    "attribs": Object {
-                      "class": "routinely--LogStar fa fa-star",
-                    },
-                    "children": Array [],
-                    "name": "i",
-                    "namespace": "http://www.w3.org/1999/xhtml",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": Object {
-                      "attribs": Object {
-                        "class": "routinely--LogStar fa fa-star",
-                      },
-                      "children": Array [],
-                      "name": "i",
-                      "namespace": "http://www.w3.org/1999/xhtml",
-                      "next": [Circular],
-                      "parent": [Circular],
-                      "prev": null,
-                      "type": "tag",
-                      "x-attribsNamespace": Object {
-                        "class": undefined,
-                      },
-                      "x-attribsPrefix": Object {
-                        "class": undefined,
-                      },
-                    },
-                    "type": "tag",
-                    "x-attribsNamespace": Object {
-                      "class": undefined,
-                    },
-                    "x-attribsPrefix": Object {
-                      "class": undefined,
-                    },
-                  },
-                ],
+                "children": Array [],
                 "name": "td",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": null,

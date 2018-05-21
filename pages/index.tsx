@@ -30,6 +30,7 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
     }
 
     this.createActivity = this.createActivity.bind(this)
+    this.createLog = this.createLog.bind(this)
   }
 
   static async getInitialProps ({ req }: { req: any }) {
@@ -63,7 +64,19 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
       const activity = await api.createActivity(params)
 
       this.setState({
-        activities: [...this.props.activities, activity]
+        activities: [...this.state.activities, activity]
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  async createLog (params: Partial<ActivityLog>) {
+    try {
+      const log = await api.createLog(params)
+
+      this.setState({
+        logsForWeek: [...this.state.logsForWeek, log]
       })
     } catch (e) {
       console.error(e)
@@ -85,6 +98,7 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
                       startOfWeek={this.state.startOfWeek}
                       activities={this.state.activities}
                       logsForWeek={this.state.logsForWeek}
+                      createLog={this.createLog}
                     />
                     <NewActivity onSubmitNewActivity={this.createActivity} />
                   </div>
