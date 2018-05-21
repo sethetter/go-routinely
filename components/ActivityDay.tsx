@@ -3,14 +3,14 @@ import * as moment from 'moment'
 import { filter } from 'lodash'
 
 export interface ActivityDayProps {
-  activityId: number
+  activityId: string
   day: Date
   logsForDay: ActivityLog[]
 }
 
 function logCountForActivityOnDay(
   day: Date,
-  activityId: number,
+  activityId: string,
   logs: ActivityLog[]
 ): number {
   return filter(logs, l => {

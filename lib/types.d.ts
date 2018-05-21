@@ -8,7 +8,7 @@ declare interface ActivityLog {
   _id: string
   name: string
   value: number
-  activityId: number
+  activityId: string
   occurredAt: Date
 }
 

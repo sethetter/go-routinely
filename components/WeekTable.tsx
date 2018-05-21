@@ -18,10 +18,10 @@ const WeekTable = (props: WeekTableProps) => {
   const weekDays = weekDaysFromDate(startOfWeek)
   
   const activityRows = activities.map(a => {
-    const logsForActivity = logsForWeek.filter(l => l.activityId === a.id)
+    const logsForActivity = logsForWeek.filter(l => l.activityId === a._id)
     return (
       <ActivityRow
-        key={a.id}
+        key={a._id}
         activity={a}
         weekDays={weekDays}
         logsForActivity={logsForActivity}

@@ -3,7 +3,8 @@ import * as URI from 'urijs'
 import * as fetch from 'isomorphic-fetch'
 
 const defaultFetchOpts: RequestInit = {
-  credentials: 'same-origin'
+  headers: { 'Content-Type': 'application/json '},
+  credentials: 'same-origin',
 }
 
 const apiUrl = (isServer: boolean, path: string): string =>
@@ -15,7 +16,7 @@ export async function getActivities (
 ): Promise<Activity[]> {
   const uri = new URI(apiUrl(isServer, '/api/activities'))
 
-  return fetch(uri.valueOf(), { headers, ...defaultFetchOpts }).then(r => r.json())
+  return fetch(uri.valueOf(), { ...defaultFetchOpts, headers }).then(r => r.json())
 }
 
 export async function getLogsForWeek (
@@ -26,7 +27,7 @@ export async function getLogsForWeek (
   const uri = new URI(apiUrl(isServer, '/api/logs'))
   uri.addQuery('week', moment(date).toISOString())
 
-  return fetch(uri.valueOf(), { headers, ...defaultFetchOpts }).then(r => r.json())
+  return fetch(uri.valueOf(), { ...defaultFetchOpts, headers }).then(r => r.json())
 }
 
 export async function getUserData (
@@ -34,17 +35,16 @@ export async function getUserData (
   headers: { [key: string]: string } = {},
 ): Promise<UserData | undefined> {
   const uri = new URI(apiUrl(isServer, '/api/user/me'))
-  return fetch(uri.valueOf(), { headers, ...defaultFetchOpts }).then(r => r.json())
+  return fetch(uri.valueOf(), { ...defaultFetchOpts, headers }).then(r => r.json())
 }
 
 export async function createActivity (
   params: Partial<Activity>,
   isServer: boolean = false,
-  headers: { [key: string]: string } = {},
 ): Promise<Activity> {
   const uri = new URI(apiUrl(isServer, '/api/activities'))
-  return fetch(uri.valueOf(), Object.assign({
+  return fetch(uri.valueOf(), Object.assign({}, defaultFetchOpts, {
     body: JSON.stringify(params),
-    method: 'post',
-  }, { headers, ...defaultFetchOpts })).then(r => r.json())
+    method: 'POST',
+  })).then(r => r.json())
 }

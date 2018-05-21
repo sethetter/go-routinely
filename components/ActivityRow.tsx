@@ -23,14 +23,14 @@ const ActivityRow = ({
       <ActivityDay
         key={d.valueOf()}
         day={d}
-        activityId={activity.id}
+        activityId={activity._id}
         logsForDay={logsForDay}
       />
     )
   })
 
   return (
-    <tr key={activity.id} className="ActivityRow">
+    <tr key={activity._id} className="ActivityRow">
       <td>{activity.name}</td>
       {activityDays}
     </tr>

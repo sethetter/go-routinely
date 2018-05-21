@@ -5,10 +5,11 @@ import * as api from '../lib/api'
 
 import NavBar from '../components/NavBar'
 import WeekTable from '../components/WeekTable'
+import NewActivity from '../components/NewActivity'
 
 import './index.scss'
 
-interface AppState { 
+interface IndexState { 
   isLoading: boolean
   user?: UserData
   startOfWeek: Date
@@ -16,7 +17,7 @@ interface AppState {
   logsForWeek: ActivityLog[]
 }
 
-class App extends React.Component<Partial<AppState>, AppState> {
+class Index extends React.Component<Partial<IndexState>, IndexState> {
 
   constructor (args: any) {
     super(args)
@@ -45,7 +46,6 @@ class App extends React.Component<Partial<AppState>, AppState> {
   }
 
   componentWillMount () {
-    console.log(this.props)
     try {
       this.setState({
         isLoading: false,
@@ -58,9 +58,21 @@ class App extends React.Component<Partial<AppState>, AppState> {
     }
   }
 
+  async createActivity (params: Partial<Activity>) {
+    try {
+      const activity = await api.createActivity(params)
+
+      this.setState({
+        activities: [...this.props.activities, activity]
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   render () {
     return (
-      <div className="App">
+      <div className="Index">
         <NavBar user={this.state.user} />
 
         <div className="container">
@@ -74,6 +86,7 @@ class App extends React.Component<Partial<AppState>, AppState> {
                       activities={this.state.activities}
                       logsForWeek={this.state.logsForWeek}
                     />
+                    <NewActivity onSubmitNewActivity={this.createActivity} />
                   </div>
                 ) : (
                   <h3 className="text-center" >Welcome! Please log in to get started.</h3>
@@ -87,4 +100,4 @@ class App extends React.Component<Partial<AppState>, AppState> {
   }
 }
 
-export default App
+export default Index
