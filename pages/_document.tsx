@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <title>Routinely</title>
           <link href="https://fonts.googleapis.com/css?family=Anton|PT+Sans+Narrow" rel="stylesheet" />
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
