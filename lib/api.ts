@@ -8,7 +8,7 @@ const defaultFetchOpts: RequestInit = {
 }
 
 const apiUrl = (isServer: boolean, path: string): string =>
-  isServer ? `http//localhost:3000${path}` : `${path}`
+  isServer ? `http://localhost:3000${path}` : path
 
 export async function getActivities (
   isServer: boolean = false,
