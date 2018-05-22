@@ -28,6 +28,11 @@ export default (nextHandler: NextHandler): express.Application => {
   
   mongoose.connect(process.env.MONGO_URL)
 
+  /**
+   * When deploying with `now`, https is handled by a layer in their control,
+   * so we need to set a couple things on the app so it knows we're running
+   * with tls enabled.
+   */
   if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', true)
     app.use('*', (req, _res, next) => {

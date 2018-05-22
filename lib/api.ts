@@ -8,7 +8,10 @@ const defaultFetchOpts: RequestInit = {
 }
 
 const apiUrl = (isServer: boolean, path: string): string =>
-  isServer ? `http://localhost:3000${path}` : `${path}`
+  !isServer ? path :
+    process.env.NODE_ENV === 'production'
+      ? `https://localhost:443${path}`
+      : `http://localhost:3000${path}`
 
 export async function getActivities (
   isServer: boolean = false,
