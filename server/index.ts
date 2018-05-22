@@ -8,7 +8,7 @@ const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
 
 nextApp.prepare().then(() => {
-  server(nextHandler).listen(port, (err) => {
+  server(nextHandler).listen(port, (err: Error) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })

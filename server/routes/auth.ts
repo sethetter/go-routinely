@@ -1,5 +1,6 @@
 import * as express from 'express'
 import * as passport from 'passport'
+// @ts-ignore
 import * as Auth0Strategy from 'passport-auth0'
 import * as httpErrors from 'http-errors'
 
