@@ -18,7 +18,7 @@ const ActivityRow = ({
 }: ActivityRowProps) => {
   const activityDays = weekDays.map(d => {
     const logsForDay = logsForActivity.filter(l =>
-      moment(l.completedAt).isSame(d, 'day')
+      moment.utc(l.completedAt).isSame(d, 'day')
     )
 
     return (

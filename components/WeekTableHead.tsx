@@ -8,8 +8,8 @@ export interface WeekTableHeadProps {
 }
 
 const WeekTableHead = ({ startOfWeek }: WeekTableHeadProps) => {
-  const sunday = moment(startOfWeek).format('M/D')
-  const saturday = moment(startOfWeek).day('saturday').format('M/D')
+  const sunday = moment(startOfWeek).startOf('week').format('M/D')
+  const saturday = moment(startOfWeek).endOf('week').format('M/D')
   const weekRange = `${sunday} - ${saturday}`
 
   return (

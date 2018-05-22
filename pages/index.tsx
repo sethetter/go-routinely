@@ -41,7 +41,8 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
     const isServer = !!req
     const headers: any | undefined = isServer ? req.headers : {}
 
-    const startOfWeek = moment().startOf('week').toDate()
+    // Start in the middle of the day so timezones always line up
+    const startOfWeek = moment.utc().startOf('week').add(12, 'hours').toDate()
 
     const user = isServer ? req.user : await api.getUserData(isServer, headers)
     const activities = user ? await api.getActivities(isServer, headers) : []

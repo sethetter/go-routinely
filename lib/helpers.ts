@@ -6,7 +6,7 @@ export function startOfWeekFromDate (date: Date): Date {
 
 export function weekDaysFromDate (date: Date): Date[] {
   // Subtract one to start so loop can always add one
-  const startOfWeek = moment(date).day('Sunday').subtract(1, 'day').startOf('day')
+  const startOfWeek = moment.utc(date).startOf('week').add(12, 'hours').subtract(1, 'day')
   const weekDays = []
 
   for (let i = 0; i < 7; i++) {

@@ -14,50 +14,50 @@ exports[`<ActivityRow /> renders successfully 1`] = `
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-25T05:00:00.000Z}
-    key="1521954000000"
+    day={2018-03-25T12:00:00.000Z}
+    key="1521979200000"
     logsForDay={Array []}
   />
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-26T05:00:00.000Z}
-    key="1522040400000"
+    day={2018-03-26T12:00:00.000Z}
+    key="1522065600000"
     logsForDay={Array []}
   />
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-27T05:00:00.000Z}
-    key="1522126800000"
+    day={2018-03-27T12:00:00.000Z}
+    key="1522152000000"
     logsForDay={Array []}
   />
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-28T05:00:00.000Z}
-    key="1522213200000"
+    day={2018-03-28T12:00:00.000Z}
+    key="1522238400000"
     logsForDay={Array []}
   />
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-29T05:00:00.000Z}
-    key="1522299600000"
+    day={2018-03-29T12:00:00.000Z}
+    key="1522324800000"
     logsForDay={Array []}
   />
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-30T05:00:00.000Z}
-    key="1522386000000"
+    day={2018-03-30T12:00:00.000Z}
+    key="1522411200000"
     logsForDay={Array []}
   />
   <ActivityDay
     activityId="1"
     createLog={[MockFunction]}
-    day={2018-03-31T05:00:00.000Z}
-    key="1522472400000"
+    day={2018-03-31T12:00:00.000Z}
+    key="1522497600000"
     logsForDay={Array []}
   />
 </tr>
