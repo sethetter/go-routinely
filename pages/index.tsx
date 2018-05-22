@@ -101,7 +101,6 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
   }
 
   render () {
-    console.log(this.state.points)
     return (
       <div className="Index">
         <NavBar user={this.state.user} />
