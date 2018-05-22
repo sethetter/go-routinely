@@ -1,6 +1,6 @@
 import * as express from 'express'
 import * as moment from 'moment'
-import { isEmpty } from 'lodash'
+import { isEmpty, sum } from 'lodash'
 
 import Activity from '../models/Activity';
 import ActivityLog from '../models/ActivityLog';
@@ -75,6 +75,13 @@ router.post('/logs', async (req, res) => {
   }
 
   return res.json(activityLog)
+})
+
+router.get('/points', async (req, res) => {
+  const query: any = { userId: req.user.id }
+  const logs = await ActivityLog.find(query).select({ value: 1 })
+  const points = sum(logs.map(l => l.value))
+  return res.json({ points })
 })
 
 export default router

@@ -6,6 +6,7 @@ import * as api from '../lib/api'
 import NavBar from '../components/NavBar'
 import WeekTable from '../components/WeekTable'
 import NewActivity from '../components/NewActivity'
+import PointsBar from '../components/PointsBar'
 
 import './index.scss'
 
@@ -15,6 +16,7 @@ interface IndexState {
   startOfWeek: Date
   activities: Activity[]
   logsForWeek: ActivityLog[]
+  points: number
 }
 
 class Index extends React.Component<Partial<IndexState>, IndexState> {
@@ -27,10 +29,12 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
       startOfWeek: this.props.startOfWeek,
       activities: this.props.activities,
       logsForWeek: this.props.logsForWeek,
+      points: this.props.points,
     }
 
     this.createActivity = this.createActivity.bind(this)
     this.createLog = this.createLog.bind(this)
+    this.getPoints = this.getPoints.bind(this)
   }
 
   static async getInitialProps ({ req }: { req: any }) {
@@ -42,8 +46,9 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
     const user = isServer ? req.user : await api.getUserData(isServer, headers)
     const activities = user ? await api.getActivities(isServer, headers) : []
     const logsForWeek = user ? await api.getLogsForWeek(startOfWeek, isServer, headers) : []
+    const points = user ? await api.getPoints(isServer, headers) : 0
 
-    return { user, startOfWeek, activities, logsForWeek }
+    return { user, startOfWeek, activities, logsForWeek, points }
   }
 
   componentWillMount () {
@@ -52,8 +57,18 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
         isLoading: false,
         user: this.props.user,
         activities: this.props.activities,
-        logsForWeek: this.props.logsForWeek
+        logsForWeek: this.props.logsForWeek,
+        points: this.props.points,
       })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  async getPoints () {
+    try {
+      const points = await api.getPoints()
+      this.setState({ points })
     } catch (e) {
       console.error(e)
     }
@@ -78,12 +93,15 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
       this.setState({
         logsForWeek: [...this.state.logsForWeek, log]
       })
+
+      await this.getPoints()
     } catch (e) {
       console.error(e)
     }
   }
 
   render () {
+    console.log(this.state.points)
     return (
       <div className="Index">
         <NavBar user={this.state.user} />
@@ -101,6 +119,12 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
                       createLog={this.createLog}
                     />
                     <NewActivity onSubmitNewActivity={this.createActivity} />
+                    <hr />
+                    <div className="row">
+                      <div className="col">
+                        <PointsBar points={this.state.points} createLog={this.createLog} />
+                      </div>
+                    </div>
                   </div>
                 ) : (
                   <h3 className="text-center" >Welcome! Please log in to get started.</h3>

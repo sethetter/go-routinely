@@ -198,9 +198,24 @@ describe('POST /api/logs', () => {
   // it('requires that activityId belong to the current user', async (done) => {})
 })
 
+describe('GET /api/points', () => {
+  it('returns a 401 if not logged in', async (done) => {
+    const resp = await request(app).get('/api/points')
+    expect(resp.status).toBe(401)
+    return done()
+  })
+
+ it('returns sum of all logs value for logged in user', async (done) => {
+    await seedActivityLogsForUser(USER_ID)
+    const resp = await request(authenticated(app)).get('/api/points')
+    expect(resp.body.points).toBe(6)
+    return done()
+ })
+})
+
 async function seedActivitiesForUser (userId: string): Promise<void> {
   for (let i = 0; i < 3; ++i) {
-    const params = { name: `Activity ${i}`, value: i, userId }
+    const params = { name: `Activity ${i}`, value: (i+1), userId }
     await Activity.create(params)
   }
 }
@@ -212,7 +227,7 @@ async function seedActivityLogsForUser (
   for (let i = 0; i < 3; ++i) {
     await ActivityLog.create({
       name: `Activity ${i}`,
-      value: i,
+      value: (i+1),
       userId,
       ...params
     })

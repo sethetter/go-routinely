@@ -59,3 +59,17 @@ export async function createLog (
     method: 'POST',
   })).then(r => r.json())
 }
+
+export async function getPoints (
+  isServer: boolean = false,
+  headers: { [key: string]: string } = {},
+): Promise<number> {
+  const uri = new URI(apiUrl(isServer, '/api/points'))
+
+  const { points } = await fetch(
+    uri.valueOf(),
+    Object.assign({}, defaultFetchOpts, { headers })
+  ).then(r => r.json()) as any
+
+  return points
+}
