@@ -28,6 +28,13 @@ export default (nextHandler: NextHandler): express.Application => {
   
   mongoose.connect(process.env.MONGO_URL)
 
+  if (process.env.NODE_ENV === 'production') {
+    app.use('*', (req, _res, next) => {
+      req.headers['X-Forwarded-Proto'] = 'https'
+      return next()
+    })
+  }
+
   app.use(cookieParser(process.env.SESSION_SECRET || 'shwat'))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
