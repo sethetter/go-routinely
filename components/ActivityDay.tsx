@@ -6,6 +6,7 @@ export interface ActivityDayProps {
   activityId: string
   day: Date
   logsForDay: ActivityLog[]
+  createLog: (params: Partial<ActivityLog>) => void
 }
 
 function logCountForActivityOnDay(
@@ -14,12 +15,12 @@ function logCountForActivityOnDay(
   logs: ActivityLog[]
 ): number {
   return filter(logs, l => {
-    const onSameDay = moment(l.occurredAt).isSame(day, 'day')
+    const onSameDay = moment(l.completedAt).isSame(day, 'day')
     return l.activityId === activityId && onSameDay
   }).length
 }
 
-const ActivityDay = ({ day, activityId, logsForDay }: ActivityDayProps) => {
+const ActivityDay = ({ day, activityId, logsForDay, createLog }: ActivityDayProps) => {
   const stars = []
   const logCount = logCountForActivityOnDay(day, activityId, logsForDay)
 
@@ -27,9 +28,16 @@ const ActivityDay = ({ day, activityId, logsForDay }: ActivityDayProps) => {
     stars.push(<i key={i} className="routinely--LogStar fa fa-star" />)
   }
 
-  const className = `routinely--ActivityDayCol-${moment(day).weekday()}`
+  const createLogForDay = () => {
+    createLog({
+      activityId,
+      completedAt: moment(day).startOf('day').toDate()
+    })
+  }
 
-  return <td className={className}>{stars}</td>
+  const className = `activity-day routinely--ActivityDayCol-${moment(day).weekday()}`
+
+  return <td onClick={createLogForDay} className={className}>{stars}</td>
 }
 
 export default ActivityDay

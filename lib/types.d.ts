@@ -9,7 +9,7 @@ declare interface ActivityLog {
   name: string
   value: number
   activityId: string
-  occurredAt: Date
+  completedAt: Date
 }
 
 declare interface UserData {

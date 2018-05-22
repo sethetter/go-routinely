@@ -154,7 +154,8 @@ describe('GET /api/logs', () => {
 describe('POST /api/logs', () => {
   const logParams: Partial<IActivityLog> = {
     name: 'Test Log',
-    value: 2
+    value: 2,
+    completedAt: moment('2018-03-01T12:00:00.000Z').toDate()
   }
 
   it('returns a 401 if not logged in', async (done) => {
@@ -169,7 +170,7 @@ describe('POST /api/logs', () => {
     expect(resp.body.userId).toBe(USER_ID)
     expect(resp.body.name).toBe(logParams.name)
     expect(resp.body.value).toBe(logParams.value)
-    expect(resp.body.completedAt).toBeTruthy()
+    expect(resp.body.completedAt).toEqual(logParams.completedAt.toISOString())
 
     return done()
   })

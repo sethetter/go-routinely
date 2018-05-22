@@ -59,14 +59,14 @@ router.get('/logs', async (req, res) => {
 })
 
 router.post('/logs', async (req, res) => {
-  const { name, value, activityId } = req.body
+  const { name, value, activityId, completedAt } = req.body
   const userId = req.user.id
 
-  const params = { name, value, activityId, userId }
-  const activityLog = new ActivityLog(params)
+  const params = { name, value, activityId, userId, completedAt }
+  let activityLog = new ActivityLog(params)
 
   try {
-    await activityLog.save()
+    activityLog = await activityLog.save()
   } catch (err) {
     if (err.errors && !isEmpty(err.errors)) {
       return res.status(401).json({ errors: activityLog.errors })

@@ -18,7 +18,7 @@ const ActivityRow = ({
 }: ActivityRowProps) => {
   const activityDays = weekDays.map(d => {
     const logsForDay = logsForActivity.filter(l =>
-      moment(l.occurredAt).isSame(d, 'day')
+      moment(l.completedAt).isSame(d, 'day')
     )
 
     return (
@@ -27,6 +27,7 @@ const ActivityRow = ({
         day={d}
         activityId={activity._id}
         logsForDay={logsForDay}
+        createLog={createLog}
       />
     )
   })
