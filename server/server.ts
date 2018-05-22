@@ -29,6 +29,7 @@ export default (nextHandler: NextHandler): express.Application => {
   mongoose.connect(process.env.MONGO_URL)
 
   if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', true)
     app.use('*', (req, _res, next) => {
       req.headers['X-Forwarded-Proto'] = 'https'
       return next()
