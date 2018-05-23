@@ -31,7 +31,7 @@ const ActivityDay = ({ day, activityId, logsForDay, createLog }: ActivityDayProp
   const createLogForDay = () => {
     createLog({
       activityId,
-      completedAt: moment(day).startOf('day').toDate()
+      completedAt: moment(day).startOf('day').add(12, 'hours').toDate()
     })
   }
 
