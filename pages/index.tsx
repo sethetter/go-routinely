@@ -76,6 +76,7 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
   }
 
   async createActivity (params: Partial<Activity>) {
+    if (!confirm('Are you sure?')) return
     try {
       const activity = await api.createActivity(params)
 
@@ -88,6 +89,7 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
   }
 
   async createLog (params: Partial<ActivityLog>) {
+    if (!confirm('Are you sure?')) return
     try {
       const log = await api.createLog(params)
 
