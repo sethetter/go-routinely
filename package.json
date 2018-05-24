@@ -1,6 +1,6 @@
 {
   "name": "routinely",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
