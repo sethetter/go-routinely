@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "nodemon server/index.ts",
-    "build": "npx next build && tsc --project tsconfig.server.json",
-    "start": "yarn build && NODE_ENV=production node production-server/index.js",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "NODE_ENV=production node production-server/index.js",
     "test": "NODE_ENV=testing jest --watch"
   },
   "dependencies": {
