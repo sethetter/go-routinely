@@ -8,7 +8,7 @@ const defaultFetchOpts: RequestInit = {
 }
 
 const apiUrl = (req: any = {}, path: string): string => {
-  if (!req) return path
+  if (!req.protocol && !req.headers) return path
   return `${req.protocol}://${req.get('host')}${path}`
 }
 
