@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=production node production-server/index.js",
+    "start": "yarn build && NODE_ENV=production node production-server/index.js",
     "test": "NODE_ENV=testing jest --watch"
   },
   "dependencies": {
