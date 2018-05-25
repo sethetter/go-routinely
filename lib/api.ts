@@ -7,42 +7,44 @@ const defaultFetchOpts: RequestInit = {
   credentials: 'same-origin',
 }
 
-const apiUrl = (isServer: boolean, path: string): string =>
-  isServer ? `http://localhost:3000${path}` : path
+const apiUrl = (req: any = {}, path: string): string => {
+  if (!req) return path
+  return `${req.protocol}://${req.get('host')}${path}`
+}
 
 export async function getActivities (
-  isServer: boolean = false,
-  headers: { [key: string]: string } = {},
+  req: any = {},
 ): Promise<Activity[]> {
-  const uri = new URI(apiUrl(isServer, '/api/activities'))
+  const uri = new URI(apiUrl(req, '/api/activities'))
+  const headers = req ? req.headers : {}
 
   return fetch(uri.valueOf(), { ...defaultFetchOpts, headers }).then(r => r.json())
 }
 
 export async function getLogsForWeek (
   date: Date,
-  isServer: boolean = false,
-  headers: { [key: string]: string } = {},
+  req: any = {},
 ): Promise<ActivityLog[]> {
-  const uri = new URI(apiUrl(isServer, '/api/logs'))
+  const uri = new URI(apiUrl(req, '/api/logs'))
   uri.addQuery('week', moment(date).toISOString())
+  const headers = req ? req.headers : {}
 
   return fetch(uri.valueOf(), { ...defaultFetchOpts, headers }).then(r => r.json())
 }
 
 export async function getUserData (
-  isServer: boolean = false,
-  headers: { [key: string]: string } = {},
+  req: any = {},
 ): Promise<UserData | undefined> {
-  const uri = new URI(apiUrl(isServer, '/api/user/me'))
+  const uri = new URI(apiUrl(req, '/api/user/me'))
+  const headers = req ? req.headers : {}
   return fetch(uri.valueOf(), { ...defaultFetchOpts, headers }).then(r => r.json())
 }
 
 export async function createActivity (
   params: Partial<Activity>,
-  isServer: boolean = false,
+  req: any = {},
 ): Promise<Activity> {
-  const uri = new URI(apiUrl(isServer, '/api/activities'))
+  const uri = new URI(apiUrl(req, '/api/activities'))
   return fetch(uri.valueOf(), Object.assign({}, defaultFetchOpts, {
     body: JSON.stringify(params),
     method: 'POST',
@@ -51,9 +53,9 @@ export async function createActivity (
 
 export async function createLog (
   params: Partial<ActivityLog>,
-  isServer: boolean = false,
+  req: any = {},
 ): Promise<ActivityLog> {
-  const uri = new URI(apiUrl(isServer, '/api/logs'))
+  const uri = new URI(apiUrl(req, '/api/logs'))
   return fetch(uri.valueOf(), Object.assign({}, defaultFetchOpts, {
     body: JSON.stringify(params),
     method: 'POST',
@@ -61,10 +63,10 @@ export async function createLog (
 }
 
 export async function getPoints (
-  isServer: boolean = false,
-  headers: { [key: string]: string } = {},
+  req: any = {},
 ): Promise<number> {
-  const uri = new URI(apiUrl(isServer, '/api/points'))
+  const uri = new URI(apiUrl(req, '/api/points'))
+  const headers = req ? req.headers : {}
 
   const { points } = await fetch(
     uri.valueOf(),

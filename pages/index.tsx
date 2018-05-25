@@ -38,16 +38,13 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
   }
 
   static async getInitialProps ({ req }: { req: any }) {
-    const isServer = !!req
-    const headers: any | undefined = isServer ? req.headers : {}
-
     // Start in the middle of the day so timezones always line up
     const startOfWeek = moment.utc().startOf('week').add(12, 'hours').toDate()
 
-    const user = isServer ? req.user : await api.getUserData(isServer, headers)
-    const activities = user ? await api.getActivities(isServer, headers) : []
-    const logsForWeek = user ? await api.getLogsForWeek(startOfWeek, isServer, headers) : []
-    const points = user ? await api.getPoints(isServer, headers) : 0
+    const user = !!req ? req.user : await api.getUserData(req)
+    const activities = user ? await api.getActivities(req) : []
+    const logsForWeek = user ? await api.getLogsForWeek(startOfWeek, req) : []
+    const points = user ? await api.getPoints(req) : 0
 
     return { user, startOfWeek, activities, logsForWeek, points }
   }
