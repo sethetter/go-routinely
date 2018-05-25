@@ -49,7 +49,7 @@ describe('<ActivityDay />', () => {
 
     expect(createLog).toHaveBeenCalledWith({
       activityId: props.activityId,
-      completedAt: moment(props.day).startOf('day').toDate(),
+      completedAt: moment(props.day).startOf('day').add(12, 'hours').toDate(),
     })
   })
 })
