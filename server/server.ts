@@ -1,9 +1,3 @@
-import * as path from 'path'
-import * as dotenv from 'dotenv'
-
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-dotenv.config({ path: path.join(__dirname, `../.env.${process.env.NODE_ENV}`) })
-
 import * as express from 'express'
 import * as http from 'http'
 import * as bodyParser from 'body-parser'
