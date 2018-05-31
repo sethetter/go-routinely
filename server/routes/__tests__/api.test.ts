@@ -155,7 +155,7 @@ describe('POST /api/logs', () => {
   const logParams: Partial<IActivityLog> = {
     name: 'Test Log',
     value: 2,
-    completedAt: moment('2018-03-01T12:00:00.000Z').toDate()
+    completedAt: moment('2018-03-01T12:00:00.000Z').toDate(),
   }
 
   it('returns a 401 if not logged in', async (done) => {
@@ -185,7 +185,8 @@ describe('POST /api/logs', () => {
     activity = await activity.save()
 
     const resp = await request(authenticated(app)).post('/api/logs').send({
-      activityId: activity._id
+      activityId: activity._id,
+      completedAt: logParams.completedAt,
     })
 
     expect(resp.body.name).toBe(activity.name)
@@ -229,6 +230,7 @@ async function seedActivityLogsForUser (
       name: `Activity ${i}`,
       value: (i+1),
       userId,
+      completedAt: moment().toDate(),
       ...params
     })
   }

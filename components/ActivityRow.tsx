@@ -33,7 +33,10 @@ const ActivityRow = ({
   })
 
   const createLogForNow = () => {
-    createLog({ activityId: activity._id })
+    createLog({
+      activityId: activity._id,
+      completedAt: moment().toDate(),
+    })
   }
 
   return (

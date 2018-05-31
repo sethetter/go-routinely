@@ -32,7 +32,9 @@ describe('<ActivityRow />', () => {
 
     component.find('td.activity-name').simulate('click')
 
-    const expectedParams = { activityId: activity._id }
-    expect(createLog).toHaveBeenCalledWith(expectedParams)
+    expect(createLog).toHaveBeenCalledWith(expect.objectContaining({
+      activityId: activity._id,
+      completedAt: expect.anything(),
+    }))
   })
 })

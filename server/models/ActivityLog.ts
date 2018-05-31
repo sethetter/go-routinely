@@ -13,22 +13,22 @@ export interface IActivityLog extends Document {
 const schema = new Schema({
   userId: {
     type: String,
-    required: true
+    required: true,
   },
   activityId: {
-    type: String
+    type: String,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   value: {
     type: Number,
-    default: 1
+    default: 1,
   },
   completedAt: {
     type: Date,
-    default: Date.now
+    required: true,
   }
 })
 
@@ -36,7 +36,7 @@ schema.pre<Document & IActivityLog>('validate', async function () {
   if (this.activityId) {
     const activity = await Activity.findOne({
       _id: this.activityId,
-      userId: this.userId
+      userId: this.userId,
     }, 'name value')
 
     if (activity) {

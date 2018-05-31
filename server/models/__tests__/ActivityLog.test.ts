@@ -32,14 +32,16 @@ describe('ActivityLog', () => {
     } catch (e) {
       expect(log.errors['name'].message).toMatch(/required/)
     }
-
   })
 
-  it('fills completedAt on save if missing', async () => {
-    let log = await ActivityLog.create({ ...params, completedAt: undefined })
+  it('requires completedAt', async () => {
+    const log = new ActivityLog({ ...params, completedAt: undefined })
 
-    expect(log.completedAt).toBeInstanceOf(Date)
-    expect(log.completedAt).not.toBe(params.completedAt)
+    try {
+      await log.validate()
+    } catch (e) {
+      expect(log.errors['completedAt'].message).toMatch(/required/)
+    }
   })
 
   it('fills name and value based on activityId if present', async () => {
