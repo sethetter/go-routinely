@@ -2,6 +2,8 @@ import * as React from 'react'
 import * as moment from 'moment'
 import { filter } from 'lodash'
 
+import { middleOfDay } from '../lib/helpers'
+
 export interface ActivityDayProps {
   activityId: string
   day: Date
@@ -31,7 +33,7 @@ const ActivityDay = ({ day, activityId, logsForDay, createLog }: ActivityDayProp
   const createLogForDay = () => {
     createLog({
       activityId,
-      completedAt: moment(day).startOf('day').add(12, 'hours').toDate()
+      completedAt: middleOfDay(day)
     })
   }
 

@@ -3,6 +3,7 @@ import * as moment from 'moment'
 
 import { shallow } from 'enzyme'
 
+import { middleOfDay } from '../../lib/helpers'
 import { getFakeData } from '../../lib/fake-data'
 
 import ActivityDay, { ActivityDayProps } from '../ActivityDay'
@@ -49,7 +50,7 @@ describe('<ActivityDay />', () => {
 
     expect(createLog).toHaveBeenCalledWith({
       activityId: props.activityId,
-      completedAt: moment(props.day).startOf('day').add(12, 'hours').toDate(),
+      completedAt: middleOfDay(props.day),
     })
   })
 })

@@ -1,6 +1,8 @@
 import * as React from 'react'
 import * as moment from 'moment'
 
+import { middleOfDay } from '../lib/helpers'
+
 import ActivityDay from './ActivityDay'
 
 export interface ActivityRowProps {
@@ -35,7 +37,7 @@ const ActivityRow = ({
   const createLogForNow = () => {
     createLog({
       activityId: activity._id,
-      completedAt: moment().toDate(),
+      completedAt: middleOfDay(new Date()),
     })
   }
 
