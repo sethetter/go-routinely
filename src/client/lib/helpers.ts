@@ -1,4 +1,4 @@
-import * as moment from 'moment'
+import moment from 'moment'
 
 export function startOfWeekFromDate (date: Date): Date {
   return moment(middleOfDay(date)).day('Sunday').toDate()

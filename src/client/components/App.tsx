@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as moment from 'moment'
+import moment from 'moment'
 
 import * as api from '../lib/api'
 
@@ -47,14 +47,21 @@ class App extends React.Component<Partial<AppState>, AppState> {
     return { user, startOfWeek, activities, logsForWeek, points }
   }
 
-  componentWillMount () {
+  async componentWillMount () {
+    const startOfWeek = moment.utc().startOf('week').add(12, 'hours').toDate()
+
+    const user = await api.getUserData()
+    const activities = user ? await api.getActivities() : []
+    const logsForWeek = user ? await api.getLogsForWeek(startOfWeek) : []
+    const points = user ? await api.getPoints() : 0
+
     try {
       this.setState({
         isLoading: false,
-        user: this.props.user,
-        activities: this.props.activities,
-        logsForWeek: this.props.logsForWeek,
-        points: this.props.points,
+        user: user,
+        activities: activities,
+        logsForWeek: logsForWeek,
+        points: points,
       })
     } catch (e) {
       console.error(e)

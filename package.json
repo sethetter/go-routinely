@@ -5,9 +5,9 @@
     "dev": "nodemon dist/server/index.ts",
     "build": "npm run build:client && npm run build:server",
     "watch": "concurrently \"npm run watch:client\" \"npm run watch:server\"",
-    "watch:client": "parcel watch -d dist/client src/client/index.html",
+    "watch:client": "parcel watch -d dist/client src/client/index.html --public-url .",
     "watch:server": "nodemon -w src/server/**/* -x 'npm run build:server && node dist/server'",
-    "build:client": "parcel build -d dist/client src/client/index.html",
+    "build:client": "parcel build -d dist/client src/client/index.html --public-url .",
     "build:server": "tsc -p tsconfig.server.json",
     "start": "npm run build && NODE_ENV=production node dist/server/index.js",
     "test": "NODE_ENV=testing jest --watch"
@@ -57,8 +57,8 @@
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.8",
-    "@types/cookie-parser": "^1.4.1",
     "@types/connect-mongo": "0.0.37",
+    "@types/cookie-parser": "^1.4.1",
     "@types/dotenv": "^4.0.3",
     "@types/enzyme": "^3.1.9",
     "@types/enzyme-adapter-react-16": "^1.0.2",

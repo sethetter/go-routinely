@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as moment from 'moment'
+import moment from 'moment'
 
 const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
