@@ -16,7 +16,7 @@ function logCountForActivityOnDay(
   activityId: string,
   logs: ActivityLog[]
 ): number {
-  return filter(logs, l => {
+  return filter(logs, (l: ActivityLog) => {
     const onSameDay = moment(l.completedAt).isSame(day, 'day')
     return l.activityId === activityId && onSameDay
   }).length

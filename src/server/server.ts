@@ -1,26 +1,21 @@
 import * as express from 'express'
-import * as http from 'http'
 import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
 import * as session from 'express-session'
 import * as mongoose from 'mongoose'
 import * as createMongoStore from 'connect-mongo'
 import * as passport from 'passport'
+import * as serve from 'express-static'
 
 import authRoutes, { requireUser } from './routes/auth'
 import apiRoutes from './routes/api'
 
 const MongoStore = createMongoStore(session)
 
-export type NextHandler = (
-  req: http.IncomingMessage,
-  res: http.OutgoingMessage
-) => Promise<void>
-
-export default (nextHandler: NextHandler): express.Application => {
+export default (): express.Application => {
   const app = express()
   
-  mongoose.connect(process.env.MONGO_URL)
+  mongoose.connect(process.env.MONGO_URL || '')
 
   /**
    * When deploying with `now`, https is handled by a layer in their control,
@@ -65,6 +60,8 @@ export default (nextHandler: NextHandler): express.Application => {
   app.use('/auth', authRoutes)
   app.use('/api', requireUser, apiRoutes)
 
+  app.use(serve(__dirname + '/../client'))
+
   const errorHandler: express.ErrorRequestHandler =
     (err, _req, res, next) => {
       if (!err) return next()
@@ -81,8 +78,7 @@ export default (nextHandler: NextHandler): express.Application => {
 
   app.use(errorHandler)
 
-  // Everything else falls through to next
-  app.get('*', async (req, res) => nextHandler(req, res))
+  // TODO: serve static files
 
   return app
 }

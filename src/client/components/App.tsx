@@ -3,14 +3,12 @@ import * as moment from 'moment'
 
 import * as api from '../lib/api'
 
-import NavBar from '../components/NavBar'
-import WeekTable from '../components/WeekTable'
-import NewActivity from '../components/NewActivity'
-import PointsBar from '../components/PointsBar'
+import NavBar from './NavBar'
+import WeekTable from './WeekTable'
+import NewActivity from './NewActivity'
+import PointsBar from './PointsBar'
 
-import './index.scss'
-
-interface IndexState { 
+interface AppState { 
   isLoading: boolean
   user?: UserData
   startOfWeek: Date
@@ -19,7 +17,7 @@ interface IndexState {
   points: number
 }
 
-class Index extends React.Component<Partial<IndexState>, IndexState> {
+class App extends React.Component<Partial<AppState>, AppState> {
 
   constructor (args: any) {
     super(args)
@@ -102,7 +100,7 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
 
   render () {
     return (
-      <div className="Index">
+      <div className="App">
         <NavBar user={this.state.user} />
 
         <div className="container">
@@ -137,4 +135,4 @@ class Index extends React.Component<Partial<IndexState>, IndexState> {
   }
 }
 
-export default Index
+export default App

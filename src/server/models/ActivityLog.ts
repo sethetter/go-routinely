@@ -32,7 +32,7 @@ const schema = new Schema({
   }
 })
 
-schema.pre<Document & IActivityLog>('validate', async function () {
+schema.pre('validate', async function (this: IActivityLog) {
   if (this.activityId) {
     const activity = await Activity.findOne({
       _id: this.activityId,

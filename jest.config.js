@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   transform: {
     '^.+\\.jsx?$': '<rootDir>/node_modules/babel-jest',

@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "target": "es2015",
     "module": "commonjs",
-    "outDir": "production-server/"
+    "outDir": "dist/server/",
+    "lib": ["es2017", "dom"]
   },
-  "include": ["server/**/*.ts"]
+  "include": ["src/server/**/*.ts"]
 }
