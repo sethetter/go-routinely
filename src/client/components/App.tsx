@@ -1,5 +1,5 @@
 import * as React from 'react'
-import moment from 'moment'
+import * as moment from 'moment'
 
 import * as api from '../lib/api'
 
@@ -22,12 +22,15 @@ class App extends React.Component<Partial<AppState>, AppState> {
   constructor (args: any) {
     super(args)
 
+    const startOfWeek = moment.utc().startOf('week').add(12, 'hours').toDate()
+
     this.state = {
       isLoading: true,
-      startOfWeek: this.props.startOfWeek,
-      activities: this.props.activities,
-      logsForWeek: this.props.logsForWeek,
-      points: this.props.points,
+      user: undefined,
+      startOfWeek: startOfWeek,
+      activities: [],
+      logsForWeek: [],
+      points: 0,
     }
 
     this.createActivity = this.createActivity.bind(this)
@@ -35,24 +38,10 @@ class App extends React.Component<Partial<AppState>, AppState> {
     this.getPoints = this.getPoints.bind(this)
   }
 
-  static async getInitialProps ({ req }: { req: any }) {
-    // Start in the middle of the day so timezones always line up
-    const startOfWeek = moment.utc().startOf('week').add(12, 'hours').toDate()
-
-    const user = !!req ? req.user : await api.getUserData(req)
-    const activities = user ? await api.getActivities(req) : []
-    const logsForWeek = user ? await api.getLogsForWeek(startOfWeek, req) : []
-    const points = user ? await api.getPoints(req) : 0
-
-    return { user, startOfWeek, activities, logsForWeek, points }
-  }
-
   async componentWillMount () {
-    const startOfWeek = moment.utc().startOf('week').add(12, 'hours').toDate()
-
     const user = await api.getUserData()
     const activities = user ? await api.getActivities() : []
-    const logsForWeek = user ? await api.getLogsForWeek(startOfWeek) : []
+    const logsForWeek = user ? await api.getLogsForWeek(this.state.startOfWeek) : []
     const points = user ? await api.getPoints() : 0
 
     try {

@@ -1,6 +1,6 @@
-import moment from 'moment'
-import URI from 'urijs'
-import fetch from 'isomorphic-fetch'
+import * as moment from 'moment'
+import * as URI from 'urijs'
+import * as fetch from 'isomorphic-fetch'
 
 const defaultFetchOpts: RequestInit = {
   headers: { 'Content-Type': 'application/json '},

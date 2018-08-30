@@ -2,14 +2,15 @@
   "name": "routinely",
   "version": "0.0.1",
   "scripts": {
-    "dev": "nodemon dist/server/index.ts",
+    "start": "npm run build && npm run server",
+    "server": "node dist/server",
+    "dev": "nodemon dist/server/index.js",
     "build": "npm run build:client && npm run build:server",
     "watch": "concurrently \"npm run watch:client\" \"npm run watch:server\"",
-    "watch:client": "parcel watch -d dist/client src/client/index.html --public-url .",
-    "watch:server": "nodemon -w src/server/**/* -x 'npm run build:server && node dist/server'",
-    "build:client": "parcel build -d dist/client src/client/index.html --public-url .",
+    "watch:client": "nodemon -w src/client -x 'npm run build:client'",
+    "watch:server": "nodemon -w src/server -x 'npm run build:server && npm run server'",
+    "build:client": "webpack --config webpack.config.js",
     "build:server": "tsc -p tsconfig.server.json",
-    "start": "npm run build && NODE_ENV=production node dist/server/index.js",
     "test": "NODE_ENV=testing jest --watch"
   },
   "dependencies": {
@@ -76,9 +77,17 @@
     "@types/urijs": "^1.15.38",
     "bootstrap": "^4.1.2",
     "concurrently": "^3.6.1",
-    "node-sass": "^4.9.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.4.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.3",
     "nodemon": "^1.18.3",
-    "parcel-bundler": "^1.9.7",
-    "typescript": "^2.9.2"
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "ts-loader": "^4.5.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.17.1",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.1.0"
   }
 }

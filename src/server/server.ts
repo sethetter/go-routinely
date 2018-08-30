@@ -1,3 +1,4 @@
+import * as path from 'path'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
@@ -60,7 +61,7 @@ export default (): express.Application => {
   app.use('/auth', authRoutes)
   app.use('/api', requireUser, apiRoutes)
 
-  app.use(serve(__dirname + '/../client'))
+  app.use(serve(path.join(__dirname, '../assets')))
 
   const errorHandler: express.ErrorRequestHandler =
     (err, _req, res, next) => {

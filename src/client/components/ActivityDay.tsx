@@ -1,5 +1,5 @@
 import * as React from 'react'
-import moment from 'moment'
+import * as moment from 'moment'
 import { filter } from 'lodash'
 
 import { middleOfDay } from '../lib/helpers'
@@ -23,7 +23,7 @@ function logCountForActivityOnDay(
 }
 
 const ActivityDay = ({ day, activityId, logsForDay, createLog }: ActivityDayProps) => {
-  const stars = []
+  const stars: JSX.Element[] = []
   const logCount = logCountForActivityOnDay(day, activityId, logsForDay)
 
   for (let i = 0; i < logCount; i++) {

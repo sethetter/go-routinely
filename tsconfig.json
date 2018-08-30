@@ -3,12 +3,13 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "jsx": "preserve",
+    "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noUnusedLocals": true,
+    "strictNullChecks": false,
     "noUnusedParameters": true,
     "noImplicitAny": false,
     "removeComments": false,
@@ -24,6 +25,7 @@
     ]
   },
   "include": [
+    "./src/typings/**/*",
     "./src/client/**/*"
   ],
   "exclude": [
